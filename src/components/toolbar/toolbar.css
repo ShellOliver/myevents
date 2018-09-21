@@ -10,6 +10,8 @@ ul{
     margin-right: auto;
     font-weight: bold;
     text-align: center;
+    line-height: 50px;
+    padding-left: 15px;
 }
 
 .item{
