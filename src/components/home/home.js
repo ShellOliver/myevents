@@ -1,15 +1,15 @@
 import React, { Component } from 'react'
-import Card from '../card/card';
+import Card from '../card/card'
 
 export default class Home extends Component {
   onclick = () => {
-    console.log('aqui');
+    console.log('aqui')
   }
-  
-  render() {
+
+  render () {
     return (
       <div>
-        <Card title="title" image="imagePath" description="description"/>
+        <Card title='title' image='imagePath' description='description' />
       </div>
     )
   }

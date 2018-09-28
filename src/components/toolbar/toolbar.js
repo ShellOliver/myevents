@@ -1,6 +1,6 @@
-import React from 'react';
-import styles from './toolbar.css';
-import PropTypes from 'prop-types';
+import React from 'react'
+import styles from './toolbar.css'
+import PropTypes from 'prop-types'
 
 const toolbar = (props) => {
   return (
@@ -15,7 +15,8 @@ const toolbar = (props) => {
 
 toolbar.propTypes = {
   title: PropTypes.string,
-  color: PropTypes.string
+  color: PropTypes.string,
+  children: PropTypes.array
 }
 
-export default toolbar;
+export default toolbar
