@@ -1,20 +1,22 @@
-import React from 'react'
+import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
-const card = props => {
-  return (
-    <div>
-      <h3>{props.title}</h3>
-      <div>{props.image}</div>
-      <div>{props.description}</div>
-    </div>
-  )
+class Card extends Component {
+  render () {
+    return (
+      <div>
+        <h3>{this.props.title}</h3>
+        <div>{this.props.image}</div>
+        <div>{this.props.description}</div>
+      </div>
+    )
+  }
 }
 
-card.propTypes = {
+Card.propTypes = {
   title: PropTypes.string,
   image: PropTypes.string,
   description: PropTypes.string
 }
 
-export default card
+export default Card
