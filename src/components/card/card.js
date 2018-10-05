@@ -1,12 +1,12 @@
-import React, { Component } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 
-const Card = ({title, image, description}) => (
-    <div>
-      <h3>{title}</h3>
-      <div>{image}</div>
-      <div>{description}</div>
-    </div>
+const Card = ({ title, image, description }) => (
+  <div>
+    <h3>{title}</h3>
+    <div>{image}</div>
+    <div>{description}</div>
+  </div>
 )
 
 Card.propTypes = {
