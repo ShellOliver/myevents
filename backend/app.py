@@ -1,7 +1,7 @@
 from flask import Flask, request
 from flask_sqlalchemy import SQLAlchemy
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://postgres:example@localhost:5433/db1'
+app.config.from_object('config')
 db = SQLAlchemy(app)
 db.init_app(app)
 

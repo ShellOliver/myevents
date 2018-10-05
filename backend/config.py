@@ -1,0 +1,1 @@
+SQLALCHEMY_DATABASE_URI = "postgres://postgres:example@localhost:5433/db1"
