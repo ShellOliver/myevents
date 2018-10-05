@@ -25,5 +25,10 @@ def addUser():
     db.session.commit()
     return user.__str__()
 
+@app.route('/user')
+def getUsers():
+    return 'list'
+    # return json.dumps(User.query.all())
+
 if __name__ == '__main__':
     app.run(debug = True)
