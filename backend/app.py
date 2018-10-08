@@ -1,5 +1,6 @@
 from __init__ import db, app, request
 from models import User
+import json
 
 @app.route('/user', methods=['POST'])
 def addUser():
@@ -11,8 +12,8 @@ def addUser():
 
 @app.route('/user')
 def getUsers():
-    return 'list'
-    # return json.dumps(User.query.all())
+    userFound = User.query.get(1)
+    return json.dumps(userFound.serialize())
 
 if __name__ == '__main__':
     app.run(debug = True)
