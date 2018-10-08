@@ -4,7 +4,6 @@ import json
 
 @app.route('/user', methods=['POST'])
 def addUser():
-    db.create_all()
     user = User(username = request.form['username'],email = request.form['email'])
     db.session.add(user)
     db.session.commit()
@@ -16,4 +15,5 @@ def getUsers():
     return json.dumps(userFound.serialize())
 
 if __name__ == '__main__':
+    db.create_all()
     app.run(debug = True)
