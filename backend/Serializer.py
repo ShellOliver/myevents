@@ -8,3 +8,7 @@ class Serializer(object):
     @staticmethod
     def serialize_list(l):
         return [m.serialize() for m in l]
+
+    def filteredObject(self, arrayList):
+        [setattr(self, item, arrayList[item]) for item in arrayList.keys() if item in inspect(self).attrs.keys()]
+        return self
