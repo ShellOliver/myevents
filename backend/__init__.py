@@ -1,8 +1,20 @@
 from flask import Flask, request
-from flask_sqlalchemy import SQLAlchemy
+import json
+from Serializer import Serializer
+from models.user import userModel
 
-app = Flask(__name__)
-app.config.from_object('config')
+from routes.user import user_route
+from helpers.database import db
 
-db = SQLAlchemy(app)
-db.init_app(app)
+app = Flask(__name__, instance_relative_config=True)
+# app.config.from_object('.config')
+app.config['SQLALCHEMY_DATABASE_URI'] = "postgres://postgres:example@localhost:5433/db1"
+app.register_blueprint(userModel)
+app.register_blueprint(user_route)
+
+with app.app_context():
+    db.init_app(app)
+    db.create_all()
+
+if __name__ == '__main__':
+    app.run(debug = True)
