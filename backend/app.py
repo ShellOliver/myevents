@@ -1,36 +1,19 @@
-from __init__ import db, app, request
-from models import User
+from flask import Flask, request
 import json
-from sqlalchemy.inspection import inspect
-import Serializer
+from Serializer import Serializer
+from models.user import userModel
 
-@app.route('/user', methods=['PUT'])
-def addUser():
-    user = User()
-    user = user.filteredObject(request.form)
-    db.session.add(user)
-    db.session.commit()
-    return user.__str__()
+from routes.user import user_route
+from helpers.database import db
 
-@app.route('/user')
-def getUsers():
-    userListFound = User.query.all()
-    return json.dumps(User.serialize_list(userListFound))
+app = Flask(__name__, instance_relative_config=True)
+app.config['SQLALCHEMY_DATABASE_URI'] = "postgres://postgres:example@localhost:5433/db1"
+app.register_blueprint(userModel)
+app.register_blueprint(user_route)
 
-@app.route('/user/<int:id>', methods=['POST'])
-def getUser(id):
-    userFound = User.query.get(id)
-    userFound.username = request.form['username']
-    db.session.commit()
-    return json.dumps(userFound.serialize())
-
-@app.route('/user/<int:id>', methods=['DELETE'])
-def deleteUser(id):
-    userFound = User.query.get(id)
-    db.session.delete(userFound)
-    db.session.commit()
-    return 'deleted'
+with app.app_context():
+    db.init_app(app)
+    db.create_all()
 
 if __name__ == '__main__':
-    db.create_all()
     app.run(debug = True)
